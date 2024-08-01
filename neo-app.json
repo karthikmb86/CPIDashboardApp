@@ -1,0 +1,32 @@
+{
+  "welcomeFile": "/webapp/index.html",
+  "routes": [
+    {
+      "path": "/Northwind",
+      "target": {
+        "type": "destination",
+        "name": "Northwind"
+      },
+      "description": "Northwind OData services"
+    },
+    {
+      "path": "/v1",
+      "target": {
+        "type": "destination",
+        "name": "CID",
+        "entryPath": "/v1"
+      },
+      "description": "Monitoring log"
+    },
+    {
+      "path": "/sap/opu/odata",
+      "target": {
+        "type": "destination",
+        "name": "S4N_020",
+        "entryPath": "/sap/opu/odata"
+      },
+      "description": "S4"
+    }
+  ],
+  "sendWelcomeFileRedirect": true
+}
