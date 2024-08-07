@@ -234,42 +234,7 @@ sap.ui.define([
 			} else if (this.monitoringLogs.monitoringRecords.length === 0 || this.monitoringLogs.monitoringRecords.length >= 1000) { //has next block
 				this.monitoringLogs.monitoringRecords = this.monitoringLogs.monitoringRecords.concat(data.d.results);
 			}
-			//	}
-			//catch
 
-			//Temp comment
-			/*
-			this.monitoringLogs = {
-				monitoringRecords: data.d.results
-			};
-			/*
-
-			/*
-						const monitoringRecords = {
-							"monitoringRecords": [{
-								"MessageGuid": "AGOfR8X4Ev1k2FGfTYPF53dK7u5Q",
-								"CorrelationId": "AGOfR8USeExWFvdsr2LGeqfPb8Fd",
-								"ApplicationMessageId": null,
-								"ApplicationMessageType": null,
-								"LogStart": "/Date(1671382981140)/",
-								"LogEnd": "/Date(1671382989183)/",
-								"Sender": null,
-								"Receiver": null,
-								"IntegrationFlowName": "SFTP_Encryption_PGP_Setup_V3"
-							}, {
-								"MessageGuid": "AGOfSAH-Ae7xLu05i2uRebyxLdjR",
-								"CorrelationId": "AGOfSAHMruEPUUS3gxAszqutFv84",
-								"ApplicationMessageId": null,
-								"ApplicationMessageType": null,
-								"LogStart": "/Date(1671383041280)/",
-								"LogEnd": "/Date(1671383046556)/",
-								"Sender": null,
-								"Receiver": null,
-								"IntegrationFlowName": "SFTP_Encryption_PGP_Setup_V3",
-								"Status": "COMPLETED"
-							}]
-						};
-			*/
 			for (let i = 0; i < this.monitoringLogs.monitoringRecords.length; i++) {
 				const record = this.monitoringLogs.monitoringRecords[i];
 				const logStartTimestamp = parseInt(record.LogStart.match(/\d+/)[0]);

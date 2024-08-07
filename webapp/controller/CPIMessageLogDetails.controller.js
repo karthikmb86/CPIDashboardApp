@@ -11,38 +11,22 @@ sap.ui.define([
 			oRouter.getRoute("detail").attachPatternMatched(this._onObjectMatched, this);
 		},
 		_onObjectMatched: function (oEvent) {
-			/*
-				debugger;
-				this.getView().bindElement({
-					path: "/" + window.decodeURIComponent(oEvent.getParameter("arguments").messageGuid),
-					model: "monitoring"
-				});
-				debugger;
-			*/
-			//	debugger;
 
 			console.log("Entered _onObjectMatched");
 			
 			this.clearTextAreaPayload(); // Clear the text area payload
 			
-			//let msgGUIDVal = oEvent.getParameter("arguments").messageGuid;
 			this.msgGUIDVal = oEvent.getParameter("arguments").messageGuid;
 			let iFlowNameVal = oEvent.getParameter("arguments").iFlowName;
 
-			//let txtMsgGUID = this.getView().byId("lblmsgGuid");
-			//txtMsgGUID.setText(msgGUIDVal);
 
 			let messageHeader = {
-				//msgGUIDParam: msgGUIDVal,
 				msgGUIDParam: this.msgGUIDVal,
 				iFlowNameParam: iFlowNameVal
 			}
 
 			let oModelMessageHeader = new JSONModel(messageHeader);
 			this.getView().setModel(oModelMessageHeader);
-			//var cc1 = oEvent.getParameter("arguments").invoicePath1;
-			//var textId1 = this.getView().byId("TestId");
-			//textId1.setText(cc1);
 
 			//Get Error Log if "Status" is FAILED
 
@@ -86,20 +70,7 @@ sap.ui.define([
 		},
 		onPressDownloadPayload: function (oEvent) {
 			console.log("Entered onPressDownloadPayload");
-			//MessageToast.show(evt.getSource().getId() + " Pressed");
-			//	console.log("/sap/opu/odata/sap/ZMONITORING_CPI_SRV_SRV/PayloadSet('Contactupdates_for_REFX_20230203143002');
-
-			//var oButton = oEvent.getSource();
-			//var oController = oButton.getParent().getController();
-
-			// Access the controller
-			// oController.doSomething();
-
-			//let sURL = "/v1/MessageProcessingLogErrorInformations('" + msgGUIDVal + "')/$value";
-
-			//Code to Test the functionality of code
-			//let sURL = "/sap/opu/odata/sap/ZMONITORING_CPI_SRV_SRV/PayloadSet('Contactupdates_for_REFX_20230203143002')";
-			//let sURL = "/sap/opu/odata/sap/ZMONITORING_CPI_SRV_SRV/PayloadSet('" + this.msgGUIDVal + "')";
+		
 			let sURL = "/sap/opu/odata/sap/ZMONITORING_CPI_SRV_SRV_02/PayloadSet('" + this.msgGUIDVal + "')";
 			console.log("MessageID: " + this.msgGUIDVal);
 			console.log("URL: " + sURL)
@@ -107,75 +78,10 @@ sap.ui.define([
 			debugger;
 
 			this.downloadPayload(sURL);
-			/*
-			let jsonData = $.ajax({
-				type: "GET",
-				url: sURL,
-				contentType: "application/json",
-				dataType: "json",
-				success: function (data) {
-					var payloadContent = data.d.LvPayload;
-					var guid = data.d.LvGuid;
-					//var fileName = guid + ".csv";
-					var fileName = guid + "." + data.d.LvFiletype;
-
-					if (!payloadContent || payloadContent == "No valid file found") {
-						MessageBox.error("No payload available for downloading!");
-						return;
-					} else {
-
-						var a = document.createElement("a");
-						
-						var blobType;
-						if (data.d.LvFiletype === "xml") {
-							blobType = "application/xml;charset=utf-8;";
-						} else if (data.d.LvFiletype === "json") {
-							blobType = "application/json;charset=utf-8;";
-						} else if (data.d.LvFiletype === "csv") {
-							blobType = "text/csv;charset=utf-8;";
-						} else {
-							throw new Error("Unsupported content type");
-						}
-						
-						var blob = new Blob([payloadContent], {
-							//type: "text/csv;charset=utf-8;"
-							type: blobType
-						});
-
-						
-
-						if (navigator.msSaveBlob) {
-							// For IE 10+
-							navigator.msSaveBlob(blob, fileName);
-						} else {
-							// For other browsers
-							var url = URL.createObjectURL(blob);
-							a.href = url;
-							a.download = fileName;
-							document.body.appendChild(a);
-							a.click();
-							document.body.removeChild(a);
-							URL.revokeObjectURL(url);
-						}
-						// Handle successful response
-						MessageBox.success("Payload downloaded successfully!");
-						console.log(data); // Do something with the response data
-					}
-				},
-				error: function (jqXHR, textStatus, errorThrown) {
-					// Handle error
-					MessageBox.error("Failure downloading payload. Error Details: " + textStatus);
-					console.error(errorThrown);
-				}
-			}); */
 		},
 		successDownloadPayload: function (data) {
 
 			console.log("Entered successDownloadPayload");
-
-			debugger;
-			//let lblMsgErrLog = this.getView().byId("lblMessageLogText");
-			//lblMsgErrLog.setText(data.responseText);
 		},
 		downloadPayload: function (sURL) {
 			let jsonData = $.ajax({
